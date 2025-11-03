@@ -1,0 +1,193 @@
+/* Estilos Generales */
+body {
+    background-color: #000000; /* Fondo Negro Corporativo */
+    color: #FFFFFF;            /* Texto Blanco para contraste */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo del Encabezado */
+header {
+    background-color: #1a1a1a; /* Un gris muy oscuro para diferenciar */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo del Contenido Principal */
+main {
+    padding: 25px;
+    text-align: center;
+}
+
+/* Estilo para los Títulos */
+h1, h2 {
+    color: #00BFFF; /* Azul Corporativo de PASTO.AI */
+}
+
+/* Estilo del Pie de Página */
+footer {
+    background-color: #1a1a1a;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* --- Estilos de Navegación --- */
+
+/* Contenedor principal del menú */
+nav {
+    display: flex; /* ¡La magia para alinear cosas en una fila! */
+    justify-content: space-between; /* Pone espacio entre los grupos de elementos */
+    align-items: center; /* Centra todo verticalmente */
+    padding: 0 25px; /* Espacio a los lados del menú */
+}
+
+/* Lista de enlaces del menú */
+nav ul {
+    list-style: none; /* Quita los puntos de la lista */
+    display: flex; /* Pone los elementos de la lista en una fila */
+}
+
+/* Cada elemento de la lista */
+nav ul li {
+    margin-left: 20px; /* Separa los enlaces entre sí */
+}
+
+/* Estilo de todos los enlaces dentro del menú */
+nav a {
+    color: #FFFFFF; /* Texto blanco */
+    text-decoration: none; /* Quita el subrayado */
+    font-size: 16px;
+}
+
+/* Estilo específico para el logo */
+.logo {
+    font-weight: bold; /* Texto en negrita */
+    font-size: 24px;   /* Texto más grande */
+    color: #00BFFF !important; /* Asegura que sea del azul corporativo */
+}
+
+/* Estilo para el botón de contacto */
+.boton-contacto {
+    background-color: #FFFFFF; /* Fondo blanco */
+    color: #000000;            /* Texto negro */
+    padding: 8px 16px;          /* Espacio interior para que parezca un botón */
+    border-radius: 20px;        /* ¡Esquinas redondeadas! */
+    font-weight: bold;
+}
+
+/* --- Estilos de la Sección Hero --- */
+
+.hero {
+    text-align: center; /* Centra todo el texto */
+    padding: 100px 20px; /* Mucho espacio arriba y abajo para que respire */
+}
+
+.hero h2 {
+    font-size: 48px; /* Título principal mucho más grande */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.hero p {
+    font-size: 18px; /* Texto de párrafo un poco más grande */
+    max-width: 600px; /* Evita que el texto sea demasiado ancho en pantallas grandes */
+    margin: 0 auto 30px; /* Centra el párrafo y le da espacio abajo */
+}
+
+.boton-principal {
+    background-color: #00BFFF;
+    color: #000000;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Una pequeña sombra para darle profundidad */
+    transition: all 0.3s ease; /* ¡IMPORTANTE! La transición va aquí ahora */
+}
+
+/* --- Estilo para la Imagen del Logo --- */
+.logo img {
+    height: 100px; /* Lo hacemos un poquito más grande */
+    width: 100px;
+    border-radius: 50%; /* ¡La magia! Esto lo convierte en un círculo perfecto */
+    object-fit: cover; /* Asegura que la imagen llene el círculo sin deformarse */
+    background-color: #000000; /* Fondo negro por si la imagen tiene transparencias */
+    padding: 5px; /* Un pequeño borde interior para que la imagen no toque los bordes */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* La sombra de prestigio */
+    animation: aparecerLogo 0.8s ease-out; /* ¡Llamamos a nuestra animación! */
+}
+
+/* La animación de bienvenida (nuestra "pequeña película") */
+@keyframes aparecerLogo {
+    from {
+        opacity: 0; /* Empieza siendo invisible */
+        transform: scale(0.5); /* Y a la mitad de su tamaño */
+    }
+    to {
+        opacity: 1; /* Termina siendo totalmente visible */
+        transform: scale(1); /* Y a su tamaño normal */
+    }
+}
+
+/* --- EFECTOS VISUALES INTERACTIVOS (HOVER) --- */
+
+/* Efecto para los enlaces del menú (Soluciones, etc.) */
+nav ul li a:hover {
+    color: #00BFFF; /* Se convierten al azul corporativo */
+    transition: color 0.3s ease; /* ¡Magia! Hace el cambio de color suave */
+}
+
+/* Efecto para el botón blanco de Contactar Ventas */
+.boton-contacto:hover {
+    background-color: #dddddd; /* Hacemos el fondo un gris muy claro */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+/* Efecto para el botón principal azul de Empieza Ahora */
+.boton-principal:hover {
+    transform: translateY(-5px) scale(1.1); /* ¡Se eleva y crece más! */
+    box-shadow: 0px 8px 20px rgba(0, 191, 255, 0.4); /* ¡Una sombra azul que brilla! */
+    filter: brightness(1.1); /* Hacemos que el botón brille un poco más */
+}
+
+/* --- REGLAS MÁGICAS PARA CELULARES (DISEÑO ADAPTABLE) --- */
+
+@media (max-width: 768px) {
+
+    /* Cambiamos el menú para que sea vertical */
+    nav {
+        flex-direction: column; /* Apila los elementos uno sobre otro */
+        align-items: flex-start; /* Los alinea a la izquierda */
+        padding: 15px 20px;
+    }
+
+    /* La lista de enlaces también se hace vertical */
+    nav ul {
+        flex-direction: column;
+        width: 100%; /* Ocupa todo el ancho */
+        margin-top: 15px; /* Espacio entre el logo y los enlaces */
+    }
+
+    nav ul li {
+        margin-left: 0; /* Quitamos el margen izquierdo */
+        margin-bottom: 15px; /* Añadimos espacio debajo de cada enlace */
+        width: 100%;
+        text-align: center; /* Centramos el texto de los enlaces */
+    }
+
+    /* El botón de contacto también se va a su propia línea */
+    .boton-contacto {
+        margin-top: 10px;
+        width: 100%; /* Ocupa todo el ancho */
+        text-align: center; /* Centramos su texto */
+    }
+
+    /* Hacemos el título principal un poco más pequeño para que quepa */
+    .hero h2 {
+        font-size: 32px;
+    }
+}
