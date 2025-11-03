@@ -26,7 +26,23 @@
     </main>
 
     <footer>
-        <p>Hecho con ❤️ por un futuro genio de la programación.</p>
-    </footer>
+    <div class="footer-content">
+        <div class="footer-info">
+            <p>&copy; 2025 PASTO.AI | Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="{{ url_for('hola_mundo') }}">Inicio</a></li>
+                <li><a href="{{ url_for('soluciones') }}">Soluciones</a></li>
+                <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

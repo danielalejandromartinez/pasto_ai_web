@@ -191,3 +191,53 @@ nav ul li a:hover {
         font-size: 32px;
     }
 }
+
+/* --- Estilo del Pie de Página --- */
+
+footer {
+    background-color: #1a1a1a; /* Un gris un poco más claro que el header */
+    color: #FFFFFF;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: auto; /* Empuja el footer al final de la página */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    max-width: 1200px; /* Limita el ancho máximo para pantallas grandes */
+    margin: 0 auto; /* Centra el contenedor del footer */
+    flex-wrap: wrap; /* Permite que los elementos se apilen en pantallas pequeñas */
+}
+
+.footer-info, .footer-links, .footer-social {
+    flex: 1; /* Permite que los elementos crezcan y ocupen el espacio */
+    margin: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centra los enlaces */
+}
+
+.footer-links li {
+    margin: 0 15px; /* Espacio entre los enlaces */
+}
+
+.footer-links a, .footer-social a {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover, .footer-social a:hover {
+    color: #00BFFF; /* Color corporativo al pasar el ratón */
+}
+
+.footer-social a {
+    margin: 0 10px; /* Espacio entre los iconos sociales */
+}
