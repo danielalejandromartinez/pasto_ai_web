@@ -241,3 +241,93 @@ footer {
 .footer-social a {
     margin: 0 10px; /* Espacio entre los iconos sociales */
 }
+
+/* --- Estilos para el Portal Mágico (Video de Fondo) --- */
+
+.hero {
+  position: relative; /* Hacemos que sea el "jefe" de lo que hay dentro */
+  overflow: hidden;   /* Escondemos cualquier parte del video que se salga */
+}
+
+#video-fondo {
+  position: absolute; /* Lo sacamos del flujo normal para ponerlo de fondo */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Truco mágico para centrarlo siempre */
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1; /* ¡El hechizo clave! Lo enviamos detrás de todo */
+  filter: brightness(0.5); /* OPCIONAL: Lo oscurecemos un poco para que el texto resalte */
+}
+
+.hero-content {
+  position: relative; /* Lo ponemos por encima del video */
+  z-index: 1; /* Aseguramos que esté por delante */
+  color: #FFFFFF; /* Nos aseguramos de que el texto sea blanco para que se lea bien */
+  text-align: center;
+  padding: 100px 20px; /* Le damos espacio para respirar */
+}
+
+/* ======================================= */
+/*      ESTILOS PARA LA PROMO DEL CURSO      */
+/* ======================================= */
+
+.curso-promo-section {
+    background-color: #f0f4f8; /* Un fondo gris muy claro para contrastar */
+    color: #1a202c;           /* Texto oscuro para que sea fácil de leer */
+    padding: 80px 20px;      /* Mucho espacio para que respire */
+    text-align: center;
+}
+
+.curso-content h2 {
+    color: #007BFF; /* El mismo azul corporativo para el subtítulo */
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase; /* En mayúsculas para llamar la atención */
+    letter-spacing: 1.5px;
+}
+
+.curso-content h1 {
+    font-size: 42px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.curso-content p {
+    max-width: 700px; /* Limitamos el ancho del párrafo para que sea más legible */
+    margin: 0 auto 30px auto; /* Lo centramos horizontalmente */
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.curso-content ul {
+    list-style: none; /* Quitamos los puntos feos de la lista */
+    padding: 0;
+    margin-bottom: 40px;
+    display: inline-block; /* Hacemos que la lista no ocupe todo el ancho */
+    text-align: left; /* Alineamos el texto de la lista a la izquierda */
+}
+
+.curso-content li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.boton-curso {
+    background-color: #007BFF; /* El azul corporativo para que destaque */
+    color: #FFFFFF;
+    padding: 15px 30px;
+    border-radius: 50px; /* Bordes súper redondeados para un look moderno */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.3s ease; /* Transición suave para todo */
+    box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.25); /* Una sombra azul para que parezca que flota */
+}
+
+.boton-curso:hover {
+    transform: translateY(-5px); /* Se eleva un poquito al pasar el ratón */
+    box-shadow: 0px 15px 25px rgba(0, 123, 255, 0.35); /* La sombra se hace más grande */
+}
