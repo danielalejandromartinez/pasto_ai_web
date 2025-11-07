@@ -3,46 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} - Mi Increíble App Web</title>
+    <title>{% block title %}Pasto.AI{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-    <nav>
-        <a href="{{ url_for('hola_mundo') }}" class="logo">
-    <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="Logo de PASTO.AI">
-</a>
-        <ul>
-            <li><a href="{{ url_for('soluciones') }}">Soluciones</a></li>
-            <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
-            <li><a href="https://wa.me/573152405542" target="_blank">Contacto</a></li>
-        </ul>
-        <a href="https://wa.me/573152405542" class="boton-contacto" target="_blank">Contactar Ventas</a>
-    </nav>
-</header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="Logo de PASTO.AI">
+            </a>
+            <ul>
+                <li><a href="#soluciones">Soluciones</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="https://wa.me/573152405542" class="boton-contacto" target="_blank">Contactar Ventas</a>
+        </nav>
+    </header>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
 
     <footer>
-    <div class="footer-content">
-        <div class="footer-info">
-            <p>&copy; 2025 PASTO.AI | Todos los derechos reservados.</p>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 PASTO.AI | Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#soluciones">Soluciones</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">LinkedIn</a>
+            </div>
         </div>
-        <div class="footer-links">
-            <ul>
-                <li><a href="{{ url_for('hola_mundo') }}">Inicio</a></li>
-                <li><a href="{{ url_for('soluciones') }}">Soluciones</a></li>
-                <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
-            </ul>
-        </div>
-        <div class="footer-social">
-            <a href="#" target="_blank">Facebook</a>
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">LinkedIn</a>
-        </div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>

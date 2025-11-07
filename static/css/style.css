@@ -1,219 +1,251 @@
-/* Estilos Generales */
+/* ======================================= */
+/*      ESTILOS GENERALES Y FUENTES        */
+/* ======================================= */
 body {
-    background-color: #000000; /* Fondo Negro Corporativo */
-    color: #FFFFFF;            /* Texto Blanco para contraste */
-    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* Estilo del Encabezado */
+.section-title {
+    font-size: 36px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+/* ======================================= */
+/*      ESTILOS DEL ENCABEZADO (HEADER)    */
+/* ======================================= */
 header {
-    background-color: #1a1a1a; /* Un gris muy oscuro para diferenciar */
-    padding: 20px;
-    text-align: center;
-}
-
-/* Estilo del Contenido Principal */
-main {
-    padding: 25px;
-    text-align: center;
-}
-
-/* Estilo para los Títulos */
-h1, h2 {
-    color: #00BFFF; /* Azul Corporativo de PASTO.AI */
-}
-
-/* Estilo del Pie de Página */
-footer {
-    background-color: #1a1a1a;
-    padding: 15px;
-    text-align: center;
+    background-color: rgba(10, 10, 10, 0.8);
+    padding: 15px 25px;
     position: fixed;
-    bottom: 0;
     width: 100%;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #222;
+    box-sizing: border-box; /* ¡CLAVE PARA EVITAR DESBORDAMIENTOS! */
 }
 
-/* --- Estilos de Navegación --- */
-
-/* Contenedor principal del menú */
 nav {
-    display: flex; /* ¡La magia para alinear cosas en una fila! */
-    justify-content: space-between; /* Pone espacio entre los grupos de elementos */
-    align-items: center; /* Centra todo verticalmente */
-    padding: 0 25px; /* Espacio a los lados del menú */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Lista de enlaces del menú */
+.logo img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.logo img:hover {
+    transform: scale(1.1);
+}
+
 nav ul {
-    list-style: none; /* Quita los puntos de la lista */
-    display: flex; /* Pone los elementos de la lista en una fila */
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
-/* Cada elemento de la lista */
 nav ul li {
-    margin-left: 20px; /* Separa los enlaces entre sí */
+    margin-left: 30px;
 }
 
-/* Estilo de todos los enlaces dentro del menú */
-nav a {
-    color: #FFFFFF; /* Texto blanco */
-    text-decoration: none; /* Quita el subrayado */
+nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
     font-size: 16px;
+    transition: color 0.3s ease;
+}
+nav ul li a:hover {
+    color: #00BFFF;
 }
 
-/* Estilo específico para el logo */
-.logo {
-    font-weight: bold; /* Texto en negrita */
-    font-size: 24px;   /* Texto más grande */
-    color: #00BFFF !important; /* Asegura que sea del azul corporativo */
-}
-
-/* Estilo para el botón de contacto */
 .boton-contacto {
-    background-color: #FFFFFF; /* Fondo blanco */
-    color: #000000;            /* Texto negro */
-    padding: 8px 16px;          /* Espacio interior para que parezca un botón */
-    border-radius: 20px;        /* ¡Esquinas redondeadas! */
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 50px;
     font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.boton-contacto:hover {
+    background-color: #00BFFF;
+    color: #FFFFFF;
+    transform: scale(1.05);
 }
 
-/* --- Estilos de la Sección Hero --- */
+/* ======================================= */
+/*      ESTILOS PARA LA SECCIÓN HERO       */
+/* ======================================= */
+main {
+    /* Este main envuelve todas las secciones */
+    padding-top: 90px; /* ¡CLAVE! Empuja el contenido para que no quede debajo del header fijo */
+}
 
 .hero {
-    text-align: center; /* Centra todo el texto */
-    padding: 100px 20px; /* Mucho espacio arriba y abajo para que respire */
+    position: relative;
+    height: calc(100vh - 90px); /* Ocupa el resto de la pantalla visible */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero h2 {
-    font-size: 48px; /* Título principal mucho más grande */
-    margin-bottom: 20px; /* Espacio debajo del título */
+#video-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ¡LA REGLA CORRECTA PARA EL ZOOM! */
+    z-index: -1;
+    filter: brightness(0.4);
 }
 
-.hero p {
-    font-size: 18px; /* Texto de párrafo un poco más grande */
-    max-width: 600px; /* Evita que el texto sea demasiado ancho en pantallas grandes */
-    margin: 0 auto 30px; /* Centra el párrafo y le da espacio abajo */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    max-width: 800px;
+}
+
+.hero-content h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #00BFFF;
+}
+
+.hero-content p {
+    font-size: 18px;
+    max-width: 700px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.boton-principal, .boton-secundario {
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 .boton-principal {
-    background-color: #00BFFF;
-    color: #000000;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Una pequeña sombra para darle profundidad */
-    transition: all 0.3s ease; /* ¡IMPORTANTE! La transición va aquí ahora */
+    background-color: #007BFF;
+    color: #FFFFFF;
+    box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.25);
 }
-
-/* --- Estilo para la Imagen del Logo --- */
-.logo img {
-    height: 100px; /* Lo hacemos un poquito más grande */
-    width: 100px;
-    border-radius: 50%; /* ¡La magia! Esto lo convierte en un círculo perfecto */
-    object-fit: cover; /* Asegura que la imagen llene el círculo sin deformarse */
-    background-color: #000000; /* Fondo negro por si la imagen tiene transparencias */
-    padding: 5px; /* Un pequeño borde interior para que la imagen no toque los bordes */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* La sombra de prestigio */
-    animation: aparecerLogo 0.8s ease-out; /* ¡Llamamos a nuestra animación! */
-}
-
-/* La animación de bienvenida (nuestra "pequeña película") */
-@keyframes aparecerLogo {
-    from {
-        opacity: 0; /* Empieza siendo invisible */
-        transform: scale(0.5); /* Y a la mitad de su tamaño */
-    }
-    to {
-        opacity: 1; /* Termina siendo totalmente visible */
-        transform: scale(1); /* Y a su tamaño normal */
-    }
-}
-
-/* --- EFECTOS VISUALES INTERACTIVOS (HOVER) --- */
-
-/* Efecto para los enlaces del menú (Soluciones, etc.) */
-nav ul li a:hover {
-    color: #00BFFF; /* Se convierten al azul corporativo */
-    transition: color 0.3s ease; /* ¡Magia! Hace el cambio de color suave */
-}
-
-/* Efecto para el botón blanco de Contactar Ventas */
-.boton-contacto:hover {
-    background-color: #dddddd; /* Hacemos el fondo un gris muy claro */
-    transition: background-color 0.3s ease; /* Transición suave */
-}
-
-/* Efecto para el botón principal azul de Empieza Ahora */
 .boton-principal:hover {
-    transform: translateY(-5px) scale(1.1); /* ¡Se eleva y crece más! */
-    box-shadow: 0px 8px 20px rgba(0, 191, 255, 0.4); /* ¡Una sombra azul que brilla! */
-    filter: brightness(1.1); /* Hacemos que el botón brille un poco más */
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 25px rgba(0, 123, 255, 0.35);
 }
 
-/* --- REGLAS MÁGICAS PARA CELULARES (DISEÑO ADAPTABLE) --- */
-
-@media (max-width: 768px) {
-
-    /* Cambiamos el menú para que sea vertical */
-    nav {
-        flex-direction: column; /* Apila los elementos uno sobre otro */
-        align-items: flex-start; /* Los alinea a la izquierda */
-        padding: 15px 20px;
-    }
-
-    /* La lista de enlaces también se hace vertical */
-    nav ul {
-        flex-direction: column;
-        width: 100%; /* Ocupa todo el ancho */
-        margin-top: 15px; /* Espacio entre el logo y los enlaces */
-    }
-
-    nav ul li {
-        margin-left: 0; /* Quitamos el margen izquierdo */
-        margin-bottom: 15px; /* Añadimos espacio debajo de cada enlace */
-        width: 100%;
-        text-align: center; /* Centramos el texto de los enlaces */
-    }
-
-    /* El botón de contacto también se va a su propia línea */
-    .boton-contacto {
-        margin-top: 10px;
-        width: 100%; /* Ocupa todo el ancho */
-        text-align: center; /* Centramos su texto */
-    }
-
-    /* Hacemos el título principal un poco más pequeño para que quepa */
-    .hero h2 {
-        font-size: 32px;
-    }
+.boton-secundario {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+.boton-secundario:hover {
+    background-color: #FFFFFF;
+    color: #000000;
 }
 
-/* --- Estilo del Pie de Página --- */
+/* ======================================= */
+/*      ESTILOS PARA LA SECCIÓN DEL PROBLEMA */
+/* ======================================= */
+.problema-section {
+    background-color: #000000;
+    padding: 100px 20px;
+}
 
+.problemas-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.problema-card {
+    background-color: #111;
+    border: 1px solid #333;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 350px;
+    transition: all 0.3s ease;
+}
+.problema-card:hover {
+    transform: translateY(-10px);
+    border-color: #007BFF;
+}
+
+.problema-card h3 {
+    font-size: 22px;
+    color: #00BFFF;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.problema-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #CCCCCC;
+}
+
+/* ======================================= */
+/*      ESTILOS DEL PIE DE PÁGINA (FOOTER)   */
+/* ======================================= */
 footer {
-    background-color: #1a1a1a; /* Un gris un poco más claro que el header */
+    background-color: #1a1a1a;
     color: #FFFFFF;
     padding: 40px 20px;
     text-align: center;
-    margin-top: auto; /* Empuja el footer al final de la página */
+    border-top: 1px solid #333;
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between; /* Distribuye el espacio entre los elementos */
-    align-items: center; /* Centra los elementos verticalmente */
-    max-width: 1200px; /* Limita el ancho máximo para pantallas grandes */
-    margin: 0 auto; /* Centra el contenedor del footer */
-    flex-wrap: wrap; /* Permite que los elementos se apilen en pantallas pequeñas */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .footer-info, .footer-links, .footer-social {
-    flex: 1; /* Permite que los elementos crezcan y ocupen el espacio */
+    flex: 1;
     margin: 10px;
+    min-width: 250px;
 }
 
 .footer-links ul {
@@ -221,11 +253,11 @@ footer {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center; /* Centra los enlaces */
+    justify-content: center;
 }
 
 .footer-links li {
-    margin: 0 15px; /* Espacio entre los enlaces */
+    margin: 0 15px;
 }
 
 .footer-links a, .footer-social a {
@@ -235,99 +267,41 @@ footer {
 }
 
 .footer-links a:hover, .footer-social a:hover {
-    color: #00BFFF; /* Color corporativo al pasar el ratón */
+    color: #00BFFF;
 }
 
 .footer-social a {
-    margin: 0 10px; /* Espacio entre los iconos sociales */
-}
-
-/* --- Estilos para el Portal Mágico (Video de Fondo) --- */
-
-.hero {
-  position: relative; /* Hacemos que sea el "jefe" de lo que hay dentro */
-  overflow: hidden;   /* Escondemos cualquier parte del video que se salga */
-}
-
-#video-fondo {
-  position: absolute; /* Lo sacamos del flujo normal para ponerlo de fondo */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Truco mágico para centrarlo siempre */
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -1; /* ¡El hechizo clave! Lo enviamos detrás de todo */
-  filter: brightness(0.5); /* OPCIONAL: Lo oscurecemos un poco para que el texto resalte */
-}
-
-.hero-content {
-  position: relative; /* Lo ponemos por encima del video */
-  z-index: 1; /* Aseguramos que esté por delante */
-  color: #FFFFFF; /* Nos aseguramos de que el texto sea blanco para que se lea bien */
-  text-align: center;
-  padding: 100px 20px; /* Le damos espacio para respirar */
+    margin: 0 10px;
 }
 
 /* ======================================= */
-/*      ESTILOS PARA LA PROMO DEL CURSO      */
+/*      REGLAS PARA CELULARES (ADAPTABLE)    */
 /* ======================================= */
+@media (max-width: 768px) {
+    main {
+        padding-top: 0; /* En celular, el menú ya no es fijo */
+    }
+    header {
+        position: static;
+    }
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
 
-.curso-promo-section {
-    background-color: #f0f4f8; /* Un fondo gris muy claro para contrastar */
-    color: #1a202c;           /* Texto oscuro para que sea fácil de leer */
-    padding: 80px 20px;      /* Mucho espacio para que respire */
-    text-align: center;
-}
+    .hero-content h1 {
+        font-size: 36px;
+    }
 
-.curso-content h2 {
-    color: #007BFF; /* El mismo azul corporativo para el subtítulo */
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase; /* En mayúsculas para llamar la atención */
-    letter-spacing: 1.5px;
-}
+    .hero-content h2 {
+        font-size: 20px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
 
-.curso-content h1 {
-    font-size: 42px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.curso-content p {
-    max-width: 700px; /* Limitamos el ancho del párrafo para que sea más legible */
-    margin: 0 auto 30px auto; /* Lo centramos horizontalmente */
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-.curso-content ul {
-    list-style: none; /* Quitamos los puntos feos de la lista */
-    padding: 0;
-    margin-bottom: 40px;
-    display: inline-block; /* Hacemos que la lista no ocupe todo el ancho */
-    text-align: left; /* Alineamos el texto de la lista a la izquierda */
-}
-
-.curso-content li {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.boton-curso {
-    background-color: #007BFF; /* El azul corporativo para que destaque */
-    color: #FFFFFF;
-    padding: 15px 30px;
-    border-radius: 50px; /* Bordes súper redondeados para un look moderno */
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 18px;
-    transition: all 0.3s ease; /* Transición suave para todo */
-    box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.25); /* Una sombra azul para que parezca que flota */
-}
-
-.boton-curso:hover {
-    transform: translateY(-5px); /* Se eleva un poquito al pasar el ratón */
-    box-shadow: 0px 15px 25px rgba(0, 123, 255, 0.35); /* La sombra se hace más grande */
+    .footer-content {
+        flex-direction: column;
+    }
 }

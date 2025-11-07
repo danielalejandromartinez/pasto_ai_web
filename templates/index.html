@@ -1,13 +1,49 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}
-Página de Inicio
-{% endblock %}
+{% block title %}Inteligencia Artificial para Médicos Especialistas{% endblock %}
 
 {% block content %}
-<div class="hero">
-    <h2>Inteligencia Artificial para el Mundo</h2>
-    <p>Transformamos tu negocio con soluciones de vanguardia en Análisis de Datos, Automatización y Agentes con IA.</p>
-    <a href="#" class="boton-principal">Empieza Ahora</a>
-</div>
+<main>
+    <!-- ======================================= -->
+    <!--           SECCIÓN HERO FUTURISTA          -->
+    <!-- ======================================= -->
+    <section class="hero">
+        <video autoplay loop muted playsinline id="video-fondo">
+            <source src="{{ url_for('static', filename='videos/video_fondo.mp4') }}" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Recupere su Tiempo. Optimice sus Resultados.</h1>
+            <h2>La IA para el Médico Especialista Moderno</h2>
+            <p>Nuestro Coordinador Virtual de IA califica pacientes, agenda citas y automatiza el seguimiento por WhatsApp, liberándolo para que se enfoque en lo que más importa: sus pacientes.</p>
+            <div class="hero-buttons">
+                <a href="#" class="boton-principal">Solicitar una Demo</a>
+                <a href="#" class="boton-secundario">Ver Video (1 min)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!--          SECCIÓN DEL PROBLEMA           -->
+    <!-- ======================================= -->
+    <section class="problema-section" id="problema">
+        <h2 class="section-title">¿Su práctica médica se siente así?</h2>
+        <div class="problemas-container">
+            <div class="problema-card">
+                <h3>Horas Perdidas en Coordinación</h3>
+                <p>Su equipo invierte incontables horas en agendar citas, enviar recordatorios y filtrar pacientes curiosos.</p>
+            </div>
+            <div class="problema-card">
+                <h3>Pacientes que No se Presentan</h3>
+                <p>Cada cita cancelada a último minuto es un hueco en su agenda y una pérdida directa de ingresos.</p>
+            </div>
+            <div class="problema-card">
+                <h3>Seguimiento Postoperatorio Caótico</h3>
+                <p>El monitoreo manual de la evolución de decenas de pacientes es propenso a errores y consume tiempo valioso.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aquí irán las demás secciones... -->
+
+</main>
 {% endblock %}
