@@ -7,3 +7,6 @@ __pycache__/
 
 # Archivos de configuración del editor
 .vscode/
+
+# Archivo de secretos
+.env

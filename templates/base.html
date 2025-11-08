@@ -12,15 +12,16 @@
 <body>
     <header>
         <nav>
-            <a href="#" class="logo">
-    <video autoplay loop muted playsinline width="90" height="90">
-        <source src="{{ url_for('static', filename='videos/logo_video.mp4') }}" type="video/mp4">
-        Tu navegador no soporta videos HTML5.
-    </video>
-</a>
+            <a href="{{ url_for('hola_mundo') }}" class="logo">
+                <video autoplay loop muted playsinline width="90" height="90">
+                    <source src="{{ url_for('static', filename='videos/logo_video.mp4') }}" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                </video>
+            </a>
             <ul>
-                <li><a href="#soluciones">Soluciones</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
+                <!-- ¡ENLACE ACTUALIZADO! -->
+                <li><a href="{{ url_for('pagina_formularios_digitales') }}">Soluciones</a></li>
+                <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <a href="https://wa.me/573152405542" class="boton-contacto" target="_blank">Contactar Ventas</a>
@@ -36,9 +37,9 @@
             </div>
             <div class="footer-links">
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#soluciones">Soluciones</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="{{ url_for('hola_mundo') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('pagina_formularios_digitales') }}">Soluciones</a></li>
+                    <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
                 </ul>
             </div>
             <div class="footer-social">
