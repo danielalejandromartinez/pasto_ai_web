@@ -38,15 +38,25 @@ nav {
     margin: 0 auto;
 }
 
-.logo img {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+.logo video {
+    height: 90px;
+    width: 90px;
+    /* ¡Aquí empieza la nueva magia! */
+    opacity: 0; /* Por defecto, el logo es invisible */
+    transform: scale(0.8); /* Y un poquito más pequeño */
+    animation: aparecerLogo 1s ease-out 0.5s forwards; /* ¡Llamamos a la nueva animación! */
 }
-.logo img:hover {
-    transform: scale(1.1);
+
+/* Definición de la animación "aparecerLogo" */
+@keyframes aparecerLogo {
+    to {
+        opacity: 1; /* Al final, se vuelve 100% visible */
+        transform: scale(1); /* Y recupera su tamaño normal */
+    }
+}
+
+.logo video:hover {
+    transform: scale(1.1); /* Mantenemos el efecto de crecer al pasar el ratón */
 }
 
 nav ul {
@@ -90,7 +100,7 @@ nav ul li a:hover {
 /* ======================================= */
 main {
     /* Este main envuelve todas las secciones */
-    padding-top: 90px; /* ¡CLAVE! Empuja el contenido para que no quede debajo del header fijo */
+    padding-top: 120px; /* ¡CLAVE! Empuja el contenido para que no quede debajo del header fijo */
 }
 
 .hero {
