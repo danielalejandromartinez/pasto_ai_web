@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Catálogo de Agentes de IA - Pasto.AI{% endblock %}
+
+{% block content %}
+<main>
+    <section class="sales-hero">
+        <div class="sales-content">
+            <h1>Conozca a Nuestros Agentes de IA</h1>
+            <p class="sales-subtitle">Soluciones especializadas, listas para trabajar para usted 24/7.</p>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="agent-grid">
+            {% for slug, agent in agentes.items() %}
+            <a href="{{ url_for('detalle_agente', slug=slug) }}" class="agent-card {% if agent.status == 'Próximamente' %}disabled{% endif %}">
+                <div class="agent-icon">{{ agent.icono }}</div>
+                <h3>{{ agent.nombre }}</h3>
+                <p>{{ agent.descripcion_corta }}</p>
+                <span class="agent-status">{{ agent.status }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ agente.nombre }} - Pasto.AI{% endblock %}
+
+{% block content %}
+<main>
+    <section class="sales-hero">
+        <div class="sales-content">
+            <span class="agent-detail-icon">{{ agente.icono }}</span>
+            <h1>{{ agente.nombre }}</h1>
+            <p class="sales-subtitle"><strong>Nicho Ideal:</strong> {{ agente.nicho }}</p>
+        </div>
+    </section>
+
+    <section class="agent-detail-section">
+        <div class="agent-detail-content">
+            <h2>Descripción Completa</h2>
+            <p>{{ agente.descripcion_larga }}</p>
+
+            {% if agente.status == 'Disponible' %}
+            <div class="cta-section">
+                <h2>Listo para Implementar en su Negocio</h2>
+                <p>Este agente está listo para ser entrenado con sus datos y empezar a trabajar para usted esta misma semana.</p>
+                <a href="https://wa.me/573152405542" class="boton-principal" target="_blank">Agendar Consulta de Implementación</a>
+            </div>
+            {% else %}
+            <div class="cta-section coming-soon">
+                <h2>Próximamente</h2>
+                <p>Estamos dando los toques finales a este agente. Déjenos su correo y le notificaremos en cuanto esté disponible.</p>
+                <a href="#" class="boton-secundario disabled">Notificarme Lanzamiento</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

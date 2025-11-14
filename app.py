@@ -1,38 +1,69 @@
 import os
-from dotenv import load_dotenv # Importamos la nueva librería
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_mail import Mail, Message
-
-load_dotenv() # Cargamos las variables del archivo .env
+from config import Config  # <-- Importamos nuestra nueva clase Config
 
 app = Flask(__name__)
 
-# ===================================================
-# ==     CONFIGURACIÓN DE CORREO SEGURA            ==
-# ===================================================
-# Ahora leemos las credenciales desde el entorno, no desde el código.
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+# Le decimos a Flask que cargue toda la configuración desde el objeto Config.
+app.config.from_object(Config)
 
+# Inicializamos las extensiones DESPUÉS de que la app esté configurada.
 mail = Mail(app)
 
-# --- (El resto de las rutas no cambian) ---
+
+# ===================================================
+# ==     NUESTRA "BASE DE DATOS" DE AGENTES         ==
+# ===================================================
+agentes_db = {
+    'asistente-post-operatorio': {
+        'nombre': "Asistente de Cuidado Post-Operatorio",
+        'icono': "🩺",
+        'descripcion_corta': "Automatiza el seguimiento y resuelve las dudas de tus pacientes 24/7.",
+        'descripcion_larga': "Este Agente de IA se entrena con tus protocolos y guías de cuidado para responder de forma precisa y segura a las preguntas más frecuentes de tus pacientes después de una cirugía, liberando a tu equipo y mejorando la adherencia al tratamiento.",
+        'nicho': "Médicos Especialistas y Cirujanos",
+        'status': "Disponible"
+    },
+    'agente-calificador-de-candidatos': {
+        'nombre': "Agente Calificador de Candidatos",
+        'icono': "🎯",
+        'descripcion_corta': "Filtra automáticamente a los prospectos y agenda solo a los calificados.",
+        'descripcion_larga': "Implementa este agente en tu sitio web para interactuar con los visitantes, responder preguntas básicas, pre-calificar candidatos según tus criterios y agendar consultas únicamente con los prospectos de mayor valor.",
+        'nicho': "Clínicas, Inmobiliarias, Consultores",
+        'status': "Próximamente"
+    },
+    'agente-de-agendamiento-inteligente': {
+        'nombre': "Agente de Agendamiento Inteligente",
+        'icono': "🗓️",
+        'descripcion_corta': "Coordina citas y envía recordatorios para eliminar los 'no-shows'.",
+        'descripcion_larga': "Sincronizado con tu calendario, este agente gestiona el agendamiento de citas 24/7 a través de WhatsApp, encuentra huecos, confirma, reagenda y envía recordatorios automáticos para reducir la tasa de inasistencia.",
+        'nicho': "Cualquier negocio basado en citas",
+        'status': "Próximamente"
+    }
+}
+
+# ===================================================
+# ==                 RUTAS DE LA APP               ==
+# ===================================================
 
 @app.route('/')
 def hola_mundo():
     return render_template('index.html')
 
-@app.route('/soluciones')
-def soluciones():
-    return render_template('soluciones.html')
-
 @app.route('/nosotros')
 def nosotros():
     return render_template('nosotros.html')
+
+@app.route('/agentes')
+def catalogo_agentes():
+    return render_template('catalogo_agentes.html', agentes=agentes_db)
+
+@app.route('/agente/<slug>')
+def detalle_agente(slug):
+    agente = agentes_db.get(slug)
+    if not agente:
+        abort(404)
+    return render_template('detalle_agente.html', agente=agente)
 
 @app.route('/formularios-digitales')
 def pagina_formularios_digitales():
@@ -47,8 +78,7 @@ def mostrar_formulario(form_id):
         email = request.form.get('email')
         motivo = request.form.get('reason')
 
-        # Para la prueba, puedes poner tu email aquí o leerlo también de .env si quieres
-        destinatario_cliente = "correo-destino-prueba@ejemplo.com" # ¡RECUERDA CAMBIAR ESTO!
+        destinatario_cliente = "paolayela55@gmail.com" # ¡RECUERDA CAMBIAR ESTO!
         
         cuerpo_del_mensaje = f"""
         NUEVO FORMULARIO DE ADMISIÓN RECIBIDO
@@ -62,6 +92,7 @@ def mostrar_formulario(form_id):
         MOTIVO DE LA CONSULTA:
         - {motivo}
         """
+        
         msg = Message(
             subject=f"Nuevo Formulario Recibido de: {nombre}",
             sender=app.config['MAIL_USERNAME'],
@@ -77,5 +108,8 @@ def mostrar_formulario(form_id):
 def pagina_de_gracias():
     return render_template('gracias.html')
 
+# ===================================================
+# ==      CÓDIGO PARA ARRANCAR LA APLICACIÓN       ==
+# ===================================================
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

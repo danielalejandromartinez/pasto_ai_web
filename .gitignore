@@ -9,4 +9,4 @@ __pycache__/
 .vscode/
 
 # Archivo de secretos
-.env
+.gitignore
