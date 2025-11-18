@@ -1,11 +1,38 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_mail import Mail, Message
-from config import Config
 
+# --- LÓGICA DE CONFIGURACIÓN INTELIGENTE ---
+# Intenta importar la configuración desde un archivo local 'config.py'.
+# Esto funcionará en tu computadora.
+try:
+    from config import Config
+except ImportError:
+    # Si el archivo no existe (porque estamos en el servidor de Render),
+    # crea una clase Config vacía para que la app no falle.
+    class Config:
+        pass
+
+# --- INICIALIZACIÓN DE LA APLICACIÓN ---
 app = Flask(__name__)
+
+# 1. Carga la configuración base desde la clase (estará vacía en Render)
 app.config.from_object(Config)
+
+# 2. Sobrescribe/Añade la configuración desde las Variables de Entorno.
+#    Esto es lo que usará Render. Si las variables no existen, os.getenv devuelve None.
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
+    MAIL_PASSWORD=os.getenv('MAIL_PASSWORD'),
+    MAIL_USE_TLS=False,
+    MAIL_USE_SSL=True
+)
+
+# 3. Inicializa las extensiones DESPUÉS de que toda la configuración esté cargada.
 mail = Mail(app)
+
 
 # ===================================================
 # ==     NUESTRA "BASE DE DATOS" DE AGENTES         ==
