@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Inteligencia Artificial para Profesionales de la Salud{% endblock %}
+
+{% block content %}
+<main>
+    <!-- ======================================= -->
+    <!--           SECCIÓN HERO PRINCIPAL          -->
+    <!-- ======================================= -->
+    <section class="hero">
+        <video autoplay loop muted playsinline id="video-fondo">
+            <source src="{{ url_for('static', filename='videos/video_fondo.mp4') }}" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Recupere su Tiempo. Optimice sus Resultados.</h1>
+            <h2>La IA para el Profesional de la Salud Moderno</h2>
+            <p>Nuestros Agentes de IA califican pacientes, agendan citas y automatizan el seguimiento por WhatsApp, liberándolo para que se enfoque en lo que más importa: sus pacientes.</p>
+            <div class="hero-buttons">
+                <!-- Este botón ahora apunta a nuestra nueva página de presentación -->
+                <a href="{{ url_for('presentacion') }}" class="boton-principal">Comenzar Demostración</a>
+                <a href="#" class="boton-secundario">Ver Video (1 min)</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

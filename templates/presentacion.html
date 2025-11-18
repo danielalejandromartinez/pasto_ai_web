@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Nuestra Solución en Acción - Pasto.AI{% endblock %}
+
+{% block content %}
+<main class="presentation-container">
+    
+    <!-- ======================================= -->
+    <!--        DIAPOSITIVA 1: EL PROBLEMA         -->
+    <!-- ======================================= -->
+    <section class="presentation-slide" id="slide-problema">
+        <div class="slide-content">
+            <h2 class="section-title">¿Su práctica profesional se siente así?</h2>
+            <div class="problemas-container">
+                <div class="problema-card">
+                    <h3>Horas Perdidas en Coordinación</h3>
+                    <p>Su equipo invierte incontables horas en agendar citas, enviar recordatorios y filtrar pacientes curiosos.</p>
+                </div>
+                <div class="problema-card">
+                    <h3>Pacientes que No se Presentan</h3>
+                    <p>Cada cita cancelada a último minuto es un hueco en su agenda y una pérdida directa de ingresos.</p>
+                </div>
+                <div class="problema-card">
+                    <h3>Seguimiento Post-Procedimiento Caótico</h3>
+                    <p>El monitoreo manual de la evolución de decenas de pacientes es propenso a errores y consume tiempo valioso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ======================================= -->
+    <!--         DIAPOSITIVA 2: LA SOLUCIÓN        -->
+    <!-- ======================================= -->
+    <section class="presentation-slide is-hidden" id="slide-solucion">
+        <div class="slide-content">
+            <h2 class="section-title">Soluciones de IA para los Retos de su Práctica</h2>
+            <div class="agent-showcase-grid">
+                
+                <div class="agent-showcase-card">
+                    <div class="agent-icon">🩺</div>
+                    <h3>Seguimiento de Pacientes Automatizado</h3>
+                    <p>Libera a tu equipo de las preguntas repetitivas. Nuestro Agente de IA educa y guía a tus pacientes 24/7 después de cualquier procedimiento, asegurando que sigan tus indicaciones.</p>
+                    <a href="/agente/asistente-post-operatorio" class="card-link">Ver Detalles →</a>
+                </div>
+
+                <div class="agent-showcase-card">
+                    <div class="agent-icon">🗓️</div>
+                    <h3>Gestión de Agenda Inteligente</h3>
+                    <p>Reduce las ausencias (no-shows) con recordatorios automáticos y permite que los pacientes agenden citas en los huecos de tu calendario, sin intervención humana.</p>
+                    <a href="/agente/agente-de-agendamiento-inteligente" class="card-link coming-soon-link">Próximamente...</a>
+                </div>
+
+                <div class="agent-showcase-card">
+                    <div class="agent-icon">🎯</div>
+                    <h3>Recepción y Filtro Virtual</h3>
+                    <p>Califica a los visitantes de tu sitio web, responde preguntas frecuentes y captura únicamente los datos de los pacientes potenciales realmente interesados.</p>
+                    <a href="/agente/agente-calificador-de-candidatos" class="card-link coming-soon-link">Próximamente...</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = {
+            problema: document.getElementById('slide-problema'),
+            solucion: document.getElementById('slide-solucion')
+        };
+
+        // Si no encontramos las diapositivas, no hacemos nada
+        if (!slides.problema || !slides.solucion) return;
+
+        // La presentación empieza mostrando el problema
+        slides.problema.classList.remove('is-hidden');
+
+        // Programa la transición a la solución después de 5 segundos
+        setTimeout(() => {
+            transitionTo(slides.solucion);
+        }, 5000);
+
+        function transitionTo(targetSlide) {
+            for (const key in slides) {
+                slides[key].classList.add('is-hidden');
+            }
+            targetSlide.classList.remove('is-hidden');
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}{{ agente.nombre }} - Pasto.AI{% endblock %}
+
+{% block content %}
+<main>
+    <section class="sales-hero">
+        <div class="sales-content">
+            <span class="agent-detail-icon">🩺</span>
+            <h1>Asistente de Cuidado Post-Procedimiento</h1>
+            <p class="sales-subtitle"><strong>Ideal para:</strong> Cualquier práctica que realice procedimientos y requiera seguimiento.</p>
+        </div>
+    </section>
+
+    <section class="agent-detail-section">
+        <div class="agent-detail-content">
+            
+            <h2 style="text-align: center; margin-bottom: 30px;">Vea al Agente en Acción</h2>
+
+            {% if slug == 'asistente-post-operatorio' %}
+            <div class="chat-simulator">
+                <div class="chat-header">
+                    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo Pasto.AI">
+                    <div class="chat-title">
+                        <strong>Asistente Virtual del Consultorio</strong>
+                        <span id="chat-status">En línea</span>
+                    </div>
+                </div>
+                <div class="chat-body" id="chat-body">
+                    <!-- Los mensajes se añadirán aquí con JavaScript -->
+                </div>
+            </div>
+            {% endif %}
+
+            <h2 style="margin-top: 50px;">Descripción Completa</h2>
+            <p>{{ agente.descripcion_larga }}</p>
+
+            {% if agente.status == 'Disponible' %}
+            <div class="cta-section">
+                <h2>Listo para Implementar en su Práctica</h2>
+                <p>Este agente está listo para ser entrenado con sus protocolos y empezar a trabajar para usted esta misma semana.</p>
+                <a href="https://wa.me/573152405542" class="boton-principal" target="_blank">Agendar Consulta de Implementación</a>
+            </div>
+            {% else %}
+            <div class="cta-section coming-soon">
+                <h2>Próximamente</h2>
+                <p>Estamos dando los toques finales a este agente. Déjenos su correo y le notificaremos en cuanto esté disponible.</p>
+                <a href="#" class="boton-secundario disabled">Notificarme Lanzamiento</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+
+<!-- ======================================= -->
+<!-- == SCRIPT DE ANIMACIÓN MÁS REALISTA    == -->
+<!-- ======================================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (!document.querySelector('.chat-simulator')) return;
+
+    const chatBody = document.getElementById('chat-body');
+    const chatStatus = document.getElementById('chat-status');
+
+    const conversation = [
+        { type: 'patient', text: 'Doctor, buenas noches. Disculpe la hora. Salí del procedimiento esta tarde y tengo una duda con la fórmula que me dio.', time: '9:45 p. m.' },
+        { type: 'agent', text: '¡Hola! No te preocupes, estoy aquí para ayudarte 24/7. Soy el Asistente Virtual del consultorio. Para darte la información correcta, ¿podrías confirmarme tu nombre completo, por favor?', time: '9:45 p. m.' },
+        { type: 'patient', text: 'Claro, soy Ana García. La duda es sobre el analgésico, ¿lo tomo con comida? Me da miedo que me caiga mal.', time: '9:46 p. m.' },
+        { type: 'agent', text: 'Entendido, Ana. Según las indicaciones del doctor para tu procedimiento, se recomienda tomar el analgésico <strong>después de una comida ligera</strong> para evitar molestias estomacales. No lo tomes con el estómago vacío. ¿Tienes alguna otra duda sobre tu medicación o tu próxima cita de control?', time: '9:46 p. m.' }
+    ];
+
+    let conversationIndex = 0;
+    
+    function createMessageElement(msg) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-message ${msg.type}`;
+        
+        const p = document.createElement('p');
+        
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'chat-timestamp';
+        timeSpan.innerText = msg.time;
+
+        msgDiv.appendChild(p);
+        msgDiv.appendChild(timeSpan);
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        
+        return p;
+    }
+
+    function typeMessage(pElement, text) {
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                pElement.innerHTML = text.substring(0, i + 1);
+                i++;
+                const randomSpeed = Math.random() * (70 - 30) + 30;
+                setTimeout(typeWriter, randomSpeed);
+            } else {
+                if (pElement.parentElement.classList.contains('agent')) {
+                    chatStatus.innerText = 'En línea';
+                }
+                setTimeout(nextMessage, 1500);
+            }
+        }
+        typeWriter();
+    }
+
+    function nextMessage() {
+        if (conversationIndex < conversation.length) {
+            const msg = conversation[conversationIndex];
+            const pElement = createMessageElement(msg);
+
+            if (msg.type === 'agent') {
+                chatStatus.innerText = 'escribiendo...';
+                setTimeout(() => typeMessage(pElement, msg.text), 2000); 
+            } else {
+                setTimeout(() => typeMessage(pElement, msg.text), 500);
+            }
+            
+            conversationIndex++;
+        }
+    }
+
+    setTimeout(nextMessage, 1500); 
+});
+</script>
+<!-- ======================================= -->
+<!-- ==      FIN DEL SCRIPT DE ANIMACIÓN    == -->
+<!-- ======================================= -->
+
+{% endblock %}

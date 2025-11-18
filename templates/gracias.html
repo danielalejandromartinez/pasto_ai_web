@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Información Recibida{% endblock %}
+
+{% block content %}
+<main>
+    <div class="formulario-container" style="text-align: center;">
+        <h2 style="color: #00BFFF;">¡Gracias!</h2>
+        <p>Hemos recibido su información correctamente.</p>
+        <p>El consultorio se pondrá en contacto con usted si necesita detalles adicionales.</p>
+        <br>
+        <a href="{{ url_for('hola_mundo') }}" class="boton-secundario">Volver a la Página Principal</a>
+    </div>
+</main>
+{% endblock %}

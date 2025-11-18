@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pasto.AI{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('hola_mundo') }}" class="logo">
+                <video autoplay loop muted playsinline width="90" height="90">
+                    <source src="{{ url_for('static', filename='videos/logo_video.mp4') }}" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                </video>
+            </a>
+            <ul>
+                <li><a href="{{ url_for('catalogo_agentes') }}">Agentes de IA</a></li>
+                <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <a href="https://wa.me/573152405542" class="boton-contacto" target="_blank">Contactar Ventas</a>
+        </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 PASTO.AI | Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="{{ url_for('hola_mundo') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('catalogo_agentes') }}">Soluciones</a></li>
+                    <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- No hay scripts aquí, para mantener la plantilla base limpia -->
+
+</body>
+</html>
