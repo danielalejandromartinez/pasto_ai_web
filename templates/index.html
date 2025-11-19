@@ -5,18 +5,20 @@
 {% block content %}
 <main>
     <!-- ======================================= -->
-    <!--           SECCIÓN HERO PRINCIPAL          -->
+    <!--     SECCIÓN HERO CON EFECTO DE ESCRITURA   -->
     <!-- ======================================= -->
     <section class="hero">
         <video autoplay loop muted playsinline id="video-fondo">
             <source src="{{ url_for('static', filename='videos/video_fondo.mp4') }}" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1>Recupere su Tiempo. Optimice sus Resultados.</h1>
-            <h2>La IA para el Profesional de la Salud Moderno</h2>
-            <p>Nuestros Agentes de IA califican pacientes, agendan citas y automatizan el seguimiento por WhatsApp, liberándolo para que se enfoque en lo que más importa: sus pacientes.</p>
-            <div class="hero-buttons">
-                <!-- Este botón ahora apunta a nuestra nueva página de presentación -->
+            <!-- Los elementos de texto ahora están vacíos, listos para ser llenados por JS -->
+            <h1 id="hero-line-1"></h1>
+            <h2 id="hero-line-2"></h2>
+            <p id="hero-line-3"></p>
+            
+            <!-- Los botones empiezan ocultos -->
+            <div class="hero-buttons" id="hero-buttons" style="opacity: 0; transition: opacity 1s;">
                 <a href="{{ url_for('presentacion') }}" class="boton-principal">Comenzar Demostración</a>
                 <a href="#" class="boton-secundario">Ver Video (1 min)</a>
             </div>
@@ -24,4 +26,59 @@
     </section>
 
 </main>
+
+<!-- El script para esta página vive aquí ahora -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Textos que vamos a escribir
+        const text1 = "Recupere su Tiempo. Optimice sus Resultados.";
+        const text2 = "La IA para el Profesional de la Salud Moderno";
+        const text3 = "Nuestros Agentes de IA califican pacientes, agendan citas y automatizan el seguimiento por WhatsApp, liberándolo para que se enfoque en lo que más importa: sus pacientes.";
+
+        // Elementos del DOM
+        const el1 = document.getElementById('hero-line-1');
+        const el2 = document.getElementById('hero-line-2');
+        const el3 = document.getElementById('hero-line-3');
+        const buttons = document.getElementById('hero-buttons');
+
+        // Función genérica para el efecto de escritura
+        function typeWriter(element, text, onComplete) {
+            let i = 0;
+            element.innerHTML = ''; // Limpiamos el contenido
+            element.classList.add('typing-cursor'); // Añadimos el cursor
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 35); // Velocidad de escritura
+                } else {
+                    element.classList.remove('typing-cursor'); // Quitamos el cursor al terminar
+                    if (onComplete) onComplete();
+                }
+            }
+            type();
+        }
+
+        // --- Secuencia de la Animación ---
+        // Espera 1 segundo antes de empezar
+        setTimeout(() => {
+            // Escribir la primera línea
+            typeWriter(el1, text1, () => {
+                // Al terminar, espera un poco y escribe la segunda línea
+                setTimeout(() => {
+                    typeWriter(el2, text2, () => {
+                        // Al terminar, espera y escribe la tercera línea
+                        setTimeout(() => {
+                            typeWriter(el3, text3, () => {
+                                // Al terminar todo, muestra los botones
+                                buttons.style.opacity = 1;
+                            });
+                        }, 500); // Pausa de 0.5s
+                    });
+                }, 500); // Pausa de 0.5s
+            });
+        }, 1000); // Pausa inicial de 1s
+    });
+</script>
 {% endblock %}

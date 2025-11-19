@@ -962,3 +962,72 @@ footer {
     padding: 20px;
     text-align: center;
 }
+
+/* ======================================= */
+/*    ESTILOS PARA EFECTO DE ESCRITURA       */
+/* ======================================= */
+
+.typing-cursor::after {
+    content: '|';
+    display: inline-block;
+    animation: blink-caret 0.75s step-end infinite;
+    color: #00BFFF; /* Color del cursor */
+}
+
+/* Animación del parpadeo del cursor */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00BFFF; }
+}
+
+/* Ajustes para que los elementos vacíos no colapsen */
+.hero-content h1, .hero-content h2, .hero-content p {
+    min-height: 1.2em; /* Asegura una altura mínima incluso cuando está vacío */
+}
+
+/* ======================================= */
+/* ESTILOS PARA ANIMACIÓN DE TARJETAS (PRESENTACIÓN) */
+/* ======================================= */
+
+.problema-card, .agent-showcase-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.problema-card.visible, .agent-showcase-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ocultamos el contenido de las tarjetas al principio */
+.problema-card h3, .problema-card p,
+.agent-showcase-card h3, .agent-showcase-card p, .agent-showcase-card a, .agent-showcase-card .ideal-for, .agent-showcase-card .card-link {
+    opacity: 0;
+    transition: opacity 0.5s ease-out 0.3s;
+}
+
+.problema-card.visible h3, .problema-card.visible p,
+.agent-showcase-card.visible h3, .agent-showcase-card.visible p, .agent-showcase-card.visible a, .agent-showcase-card.visible .ideal-for, .agent-showcase-card.visible .card-link {
+    opacity: 1;
+}
+
+/* ======================================= */
+/*    REGLAS PARA MÓVILES (PRESENTACIÓN)     */
+/* ======================================= */
+@media (max-width: 768px) {
+    .problemas-container, .agent-showcase-grid {
+        /* En móvil, las tarjetas se apilan en una sola columna */
+        grid-template-columns: 1fr;
+    }
+
+    .problema-card, .agent-showcase-card {
+        /* Hacemos las tarjetas un poco más pequeñas en móvil */
+        padding: 25px;
+    }
+
+    .slide-content .section-title {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+}
