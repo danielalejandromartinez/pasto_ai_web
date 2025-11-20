@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<!-- Esta línea aplica la clase 'presentation-mode' solo en la página de presentación -->
+<body {% if request.path == url_for('presentacion') %}class="presentation-mode"{% endif %}>
     <header>
         <nav>
             <a href="{{ url_for('hola_mundo') }}" class="logo">
@@ -31,9 +32,7 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-info">
-                <p>&copy; 2025 PASTO.AI | Todos los derechos reservados.</p>
-            </div>
+            <div class="footer-info"><p>&copy; 2025 PASTO.AI | Todos los derechos reservados.</p></div>
             <div class="footer-links">
                 <ul>
                     <li><a href="{{ url_for('hola_mundo') }}">Inicio</a></li>
@@ -49,6 +48,13 @@
         </div>
     </footer>
     
-    <!-- No hay scripts aquí. Cada página manejará los suyos. -->
+    <script>
+        function fadeOutAndNavigate(url) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+    </script>
 </body>
 </html>
