@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Contacto - Pasto.AI{% endblock %}
+
+{% block content %}
+<main style="padding-top: 150px; background: #000; color: #FFF; text-align: center; min-height: 80vh;">
+    
+    <section style="margin-bottom: 60px;">
+        <h1 style="font-size: 45px; margin-bottom: 20px;">Hablemos.</h1>
+        <p style="color: #888; font-size: 18px;">Seleccione el canal de comunicación que prefiera.</p>
+    </section>
+
+    <!-- LAS 3 OPCIONES DE CONTACTO -->
+    <section style="max-width: 1000px; margin: 0 auto; display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; padding: 0 20px;">
+        
+        <!-- OPCIÓN 1: VENTAS (DANIELA) -->
+        <div style="background: rgba(0, 191, 255, 0.05); border: 1px solid #00BFFF; padding: 30px; border-radius: 20px; width: 280px; transition: transform 0.3s;">
+            <div style="font-size: 40px; margin-bottom: 15px;">🚀</div>
+            <h3 style="margin-bottom: 10px;">Ventas y Alianzas</h3>
+            <p style="font-size: 14px; color: #AAA; margin-bottom: 20px;">Hable con Daniela para implementar IA en su negocio hoy mismo.</p>
+            <a href="https://wa.me/573152405542?text=Hola%20Daniela,%20quiero%20información%20sobre%20ventas%20y%20alianzas." 
+               target="_blank" style="color: #00BFFF; text-decoration: none; font-weight: bold;">WhatsApp Ventas →</a>
+        </div>
+
+        <!-- OPCIÓN 2: SOPORTE -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #222; padding: 30px; border-radius: 20px; width: 280px;">
+            <div style="font-size: 40px; margin-bottom: 15px;">🛠️</div>
+            <h3 style="margin-bottom: 10px;">Soporte Técnico</h3>
+            <p style="font-size: 14px; color: #AAA; margin-bottom: 20px;">¿Ya es cliente y necesita ayuda técnica con su agente?</p>
+            <a href="https://wa.me/573152405542?text=Hola,%20necesito%20soporte%20técnico%20con%20mi%20agente." 
+               target="_blank" style="color: #FFF; text-decoration: none; font-weight: bold; opacity: 0.7;">WhatsApp Soporte →</a>
+        </div>
+
+        <!-- OPCIÓN 3: CORREO -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #222; padding: 30px; border-radius: 20px; width: 280px;">
+            <div style="font-size: 40px; margin-bottom: 15px;">✉️</div>
+            <h3 style="margin-bottom: 10px;">Correo General</h3>
+            <p style="font-size: 14px; color: #AAA; margin-bottom: 20px;">Para consultas corporativas o envío de documentos.</p>
+            <a href="mailto:danielpandiaco2020@gmail.com" style="color: #FFF; text-decoration: none; font-weight: bold; opacity: 0.7;">Enviar Email →</a>
+        </div>
+
+    </section>
+
+</main>
+{% endblock %}

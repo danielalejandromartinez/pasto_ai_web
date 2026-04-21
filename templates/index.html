@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Inteligencia Artificial para Profesionales de la Salud{% endblock %}
+{% block title %}Pasto.AI - Inteligencia Artificial para su Negocio{% endblock %}
 
 {% block content %}
 <main>
@@ -12,15 +12,15 @@
             <source src="{{ url_for('static', filename='videos/video_fondo.mp4') }}" type="video/mp4">
         </video>
         <div class="hero-content">
-            <!-- Los elementos de texto ahora están vacíos, listos para ser llenados por JS -->
-            <h1 id="hero-line-1"></h1>
-            <h2 id="hero-line-2"></h2>
-            <p id="hero-line-3"></p>
+            <!-- Estos textos se llenarán con el efecto de máquina de escribir -->
+            <h1 id="hero-line-1" style="min-height: 1.2em;"></h1>
+            <h2 id="hero-line-2" style="min-height: 1.2em; color: #00BFFF;"></h2>
+            <p id="hero-line-3" style="min-height: 3.6em; max-width: 800px;"></p>
             
-            <!-- Los botones empiezan ocultos -->
-            <div class="hero-buttons" id="hero-buttons" style="opacity: 0; transition: opacity 1s;">
-                <a href="{{ url_for('presentacion') }}" class="boton-principal">Comenzar Demostración</a>
-                <a href="#" class="boton-secundario">Ver Video (1 min)</a>
+            <!-- Botones que aparecen al final -->
+            <div class="hero-buttons" id="hero-buttons" style="opacity: 0; transition: opacity 1.5s ease;">
+                <a href="{{ url_for('catalogo_agentes') }}" class="boton-principal">Explorar Agentes de IA</a>
+                <a href="{{ url_for('presentacion') }}" class="boton-secundario">Ver Demostración</a>
             </div>
         </div>
     </section>
@@ -30,10 +30,10 @@
 <!-- El script para esta página vive aquí ahora -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Textos que vamos a escribir
-        const text1 = "Recupere su Tiempo. Optimice sus Resultados.";
-        const text2 = "La IA para el Profesional de la Salud Moderno";
-        const text3 = "Nuestros Agentes de IA califican pacientes, agendan citas y automatizan el seguimiento por WhatsApp, liberándolo para que se enfoque en lo que más importa: sus pacientes.";
+        // --- TEXTOS DEL FUTURO ---
+        const text1 = "IA que piensa. Resultados que escalan.";
+        const text2 = "El Cerebro Digital de su Empresa.";
+        const text3 = "Desde salud hasta gastronomía: creamos agentes de IA que venden, agendan y atienden por WhatsApp 24/7, liberándolo para que se enfoque en crecer.";
 
         // Elementos del DOM
         const el1 = document.getElementById('hero-line-1');
@@ -41,44 +41,40 @@
         const el3 = document.getElementById('hero-line-3');
         const buttons = document.getElementById('hero-buttons');
 
-        // Función genérica para el efecto de escritura
+        // Función de escritura (Step-by-step)
         function typeWriter(element, text, onComplete) {
             let i = 0;
-            element.innerHTML = ''; // Limpiamos el contenido
-            element.classList.add('typing-cursor'); // Añadimos el cursor
+            element.innerHTML = ''; 
+            element.classList.add('typing-cursor'); 
 
             function type() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
                     i++;
-                    setTimeout(type, 35); // Velocidad de escritura
+                    setTimeout(type, 30); // Velocidad perfecta para leer
                 } else {
-                    element.classList.remove('typing-cursor'); // Quitamos el cursor al terminar
+                    element.classList.remove('typing-cursor'); 
                     if (onComplete) onComplete();
                 }
             }
             type();
         }
 
-        // --- Secuencia de la Animación ---
-        // Espera 1 segundo antes de empezar
+        // --- ORQUESTA DE ANIMACIÓN ---
         setTimeout(() => {
-            // Escribir la primera línea
             typeWriter(el1, text1, () => {
-                // Al terminar, espera un poco y escribe la segunda línea
                 setTimeout(() => {
                     typeWriter(el2, text2, () => {
-                        // Al terminar, espera y escribe la tercera línea
                         setTimeout(() => {
                             typeWriter(el3, text3, () => {
-                                // Al terminar todo, muestra los botones
+                                // Al terminar la última línea, mostramos los botones con suavidad
                                 buttons.style.opacity = 1;
                             });
-                        }, 500); // Pausa de 0.5s
+                        }, 500); 
                     });
-                }, 500); // Pausa de 0.5s
+                }, 600); 
             });
-        }, 1000); // Pausa inicial de 1s
+        }, 800); 
     });
 </script>
 {% endblock %}

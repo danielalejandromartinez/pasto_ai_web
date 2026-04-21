@@ -498,23 +498,41 @@ footer {
     margin: 0 auto;
 }
 
+/* La tarjeta con efecto de cristal (Glassmorphism) */
 .agent-card {
-    background-color: #111;
-    border: 1px solid #333;
-    padding: 30px;
-    border-radius: 10px;
+    background: rgba(17, 17, 17, 0.7); /* Fondo semi-transparente */
+    backdrop-filter: blur(10px); /* Esto hace el efecto de vidrio empañado */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Un borde muy finito */
+    padding: 40px;
+    border-radius: 20px; /* Bordes más redonditos y suaves */
     text-decoration: none;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación suave */
+    position: relative;
+    overflow: hidden;
 }
 
+/* El brillo neón cuando pasas el mouse por encima */
 .agent-card:hover {
-    transform: translateY(-10px);
-    border-color: #007BFF;
+    transform: translateY(-15px) scale(1.02); /* Se levanta y crece un poquito */
+    border-color: #00BFFF; /* El borde se vuelve azul brillante */
+    box-shadow: 0 20px 40px rgba(0, 191, 255, 0.2); /* Sombra azul que parece luz */
+    background: rgba(20, 20, 20, 0.9);
+}
+
+/* Animación para el icono */
+.agent-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.agent-card:hover .agent-icon {
+    transform: rotate(10deg) scale(1.2); /* El icono se mueve y crece al tocar la tarjeta */
 }
 
 .agent-icon {

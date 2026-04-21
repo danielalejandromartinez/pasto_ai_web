@@ -1,133 +1,157 @@
 {% extends "base.html" %}
-
 {% block title %}{{ agente.nombre }} - Pasto.AI{% endblock %}
 
 {% block content %}
-<main>
-    <section class="sales-hero">
-        <div class="sales-content">
-            <span class="agent-detail-icon">🩺</span>
-            <h1>Asistente de Cuidado Post-Procedimiento</h1>
-            <p class="sales-subtitle"><strong>Ideal para:</strong> Cualquier práctica que realice procedimientos y requiera seguimiento.</p>
+<main style="padding-top: 100px; background: #000;">
+    <!-- CABECERA FUTURISTA -->
+    <section style="text-align: center; margin-bottom: 60px;">
+        <span style="font-size: 80px; filter: drop-shadow(0 0 10px #00BFFF);">{{ agente.icono }}</span>
+        <h1 style="color: #FFF; font-size: 48px; margin: 15px 0; letter-spacing: -1px;">{{ agente.nombre }}</h1>
+        <div style="display: inline-block; padding: 5px 20px; border-radius: 50px; background: rgba(0, 191, 255, 0.1); color: #00BFFF; font-weight: bold; font-size: 14px; text-transform: uppercase;">
+            Sistema para {{ agente.industria }}
         </div>
     </section>
 
-    <section class="agent-detail-section">
-        <div class="agent-detail-content">
-            
-            <h2 style="text-align: center; margin-bottom: 30px;">Vea al Agente en Acción</h2>
-
-            {% if slug == 'asistente-post-operatorio' %}
-            <div class="chat-simulator">
-                <div class="chat-header">
-                    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo Pasto.AI">
-                    <div class="chat-title">
-                        <strong>Asistente Virtual del Consultorio</strong>
-                        <span id="chat-status">En línea</span>
+    <!-- CENTRO DE COMANDO (CHAT + DATA) -->
+    <div style="display: flex; gap: 40px; max-width: 1300px; margin: 0 auto; padding: 0 20px; align-items: flex-start;">
+        
+        <!-- LADO IZQUIERDO: SIMULADOR DE WHATSAPP -->
+        <div style="flex: 1.2;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span style="color: #888; font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">Simulación en Tiempo Real</span>
+            </div>
+            <div class="chat-simulator" style="border: 1px solid #333; border-radius: 25px; overflow: hidden; background: #0b141a; height: 550px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+                <!-- Header del Chat -->
+                <div style="background: #202c33; padding: 15px 20px; color: #FFF; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #333;">
+                    <div style="width: 45px; height: 45px; background: linear-gradient(45deg, #00BFFF, #007BFF); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">🤖</div>
+                    <div>
+                        <strong style="display: block; font-size: 16px;">IA {{ agente.industria }}</strong>
+                        <span id="chat-status" style="font-size: 13px; color: #00BFFF; font-style: italic;">En línea</span>
                     </div>
                 </div>
-                <div class="chat-body" id="chat-body">
-                    <!-- Los mensajes se añadirán aquí con JavaScript -->
+                <!-- Cuerpo del Chat -->
+                <div id="chat-body" style="padding: 25px; display: flex; flex-direction: column; gap: 15px; height: 420px; overflow-y: auto; background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); background-size: cover;">
+                    <!-- Los mensajes entran por JS -->
                 </div>
             </div>
-            {% endif %}
-
-            <h2 style="margin-top: 50px;">Descripción Completa</h2>
-            <p>{{ agente.descripcion_larga }}</p>
-
-            {% if agente.status == 'Disponible' %}
-            <div class="cta-section">
-                <h2>Listo para Implementar en su Práctica</h2>
-                <p>Este agente está listo para ser entrenado con sus protocolos y empezar a trabajar para usted esta misma semana.</p>
-                <a href="https://wa.me/573152405542" class="boton-principal" target="_blank">Agendar Consulta de Implementación</a>
-            </div>
-            {% else %}
-            <div class="cta-section coming-soon">
-                <h2>Próximamente</h2>
-                <p>Estamos dando los toques finales a este agente. Déjenos su correo y le notificaremos en cuanto esté disponible.</p>
-                <a href="#" class="boton-secundario disabled">Notificarme Lanzamiento</a>
-            </div>
-            {% endif %}
         </div>
-    </section>
+
+        <!-- LADO DERECHO: DASHBOARD DE NEGOCIO -->
+        <div style="flex: 1;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span style="color: #888; font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">Business Intelligence</span>
+            </div>
+            <div style="background: rgba(15, 15, 15, 0.9); padding: 40px; border-radius: 25px; border: 1px solid #222; backdrop-filter: blur(20px);">
+                
+                <h4 style="color: #FFF; margin-top: 0; margin-bottom: 25px;">Métricas del Agente</h4>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;">
+                    <div style="background: #000; padding: 20px; border-radius: 15px; border: 1px solid #333;">
+                        <div style="color: #888; font-size: 12px; margin-bottom: 5px;">Contactos Nuevos</div>
+                        <div style="font-size: 28px; font-weight: bold; color: #FFF;">{{ agente.stats.clientes }}</div>
+                    </div>
+                    <div style="background: #000; padding: 20px; border-radius: 15px; border: 1px solid #333;">
+                        <div style="color: #888; font-size: 12px; margin-bottom: 5px;">Conversión/Ventas</div>
+                        <div style="font-size: 28px; font-weight: bold; color: #28a745;">{{ agente.stats.ventas }}</div>
+                    </div>
+                </div>
+
+                <div style="color: #888; font-size: 13px; margin-bottom: 15px;">Rendimiento Operativo</div>
+                <div style="display: flex; align-items: flex-end; gap: 12px; height: 120px; background: #000; padding: 20px; border-radius: 15px;">
+                    <div style="flex: 1; background: #00BFFF; height: 30%; border-radius: 4px; opacity: 0.5;"></div>
+                    <div style="flex: 1; background: #00BFFF; height: 60%; border-radius: 4px; opacity: 0.7;"></div>
+                    <div style="flex: 1; background: #00BFFF; height: 45%; border-radius: 4px; opacity: 0.6;"></div>
+                    <div style="flex: 1; background: #00BFFF; height: 85%; border-radius: 4px;"></div>
+                    <div style="flex: 1; background: #00BFFF; height: 55%; border-radius: 4px; opacity: 0.8;"></div>
+                </div>
+
+                <div style="margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; text-align: center;">
+                    <span style="color: #00BFFF; font-weight: bold;">⚡ {{ agente.stats.ahorro }} de tiempo ahorrado</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÓN FINAL -->
+    <div style="text-align: center; margin-top: 80px; padding-bottom: 100px;">
+        <a href="https://wa.me/573152405542?text={{ agente.wa_mensaje|urlencode }}" target="_blank" class="boton-principal" style="padding: 25px 60px; font-size: 22px; border-radius: 100px; text-decoration: none; box-shadow: 0 15px 40px rgba(0, 123, 255, 0.4);">
+            🚀 SOLICITAR IMPLEMENTACIÓN
+        </a>
+    </div>
 </main>
 
-<!-- ======================================= -->
-<!-- == SCRIPT DE ANIMACIÓN MÁS REALISTA    == -->
-<!-- ======================================= -->
+<!-- SCRIPT CON EFECTO TYPEWRITER -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    if (!document.querySelector('.chat-simulator')) return;
-
     const chatBody = document.getElementById('chat-body');
     const chatStatus = document.getElementById('chat-status');
+    const conversation = {{ agente.conversacion|tojson }};
+    let index = 0;
 
-    const conversation = [
-        { type: 'patient', text: 'Doctor, buenas noches. Disculpe la hora. Salí del procedimiento esta tarde y tengo una duda con la fórmula que me dio.', time: '9:45 p. m.' },
-        { type: 'agent', text: '¡Hola! No te preocupes, estoy aquí para ayudarte 24/7. Soy el Asistente Virtual del consultorio. Para darte la información correcta, ¿podrías confirmarme tu nombre completo, por favor?', time: '9:45 p. m.' },
-        { type: 'patient', text: 'Claro, soy Ana García. La duda es sobre el analgésico, ¿lo tomo con comida? Me da miedo que me caiga mal.', time: '9:46 p. m.' },
-        { type: 'agent', text: 'Entendido, Ana. Según las indicaciones del doctor para tu procedimiento, se recomienda tomar el analgésico <strong>después de una comida ligera</strong> para evitar molestias estomacales. No lo tomes con el estómago vacío. ¿Tienes alguna otra duda sobre tu medicación o tu próxima cita de control?', time: '9:46 p. m.' }
-    ];
+    function typeWriter(element, text, callback) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 30); // Velocidad de escritura humana
+            } else {
+                callback();
+            }
+        }
+        type();
+    }
 
-    let conversationIndex = 0;
-    
-    function createMessageElement(msg) {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `chat-message ${msg.type}`;
+    function processNextMessage() {
+        if (index >= conversation.length) return;
+
+        const msg = conversation[index];
+        const bubble = document.createElement('div');
+        
+        // Estilo de la burbuja
+        bubble.style.cssText = `padding: 12px 18px; border-radius: 15px; max-width: 80%; font-size: 15px; margin-bottom: 10px; position: relative; line-height: 1.4;`;
         
         const p = document.createElement('p');
-        
-        const timeSpan = document.createElement('span');
-        timeSpan.className = 'chat-timestamp';
-        timeSpan.innerText = msg.time;
+        p.style.margin = "0";
+        bubble.appendChild(p);
 
-        msgDiv.appendChild(p);
-        msgDiv.appendChild(timeSpan);
-        chatBody.appendChild(msgDiv);
+        if (msg.type === 'agent') {
+            bubble.style.background = '#202c33';
+            bubble.style.color = '#e9edef';
+            bubble.style.alignSelf = 'flex-start';
+            bubble.style.borderTopLeftRadius = '0';
+            chatStatus.innerText = 'escribiendo...';
+        } else {
+            bubble.style.background = '#005c4b';
+            bubble.style.color = '#e9edef';
+            bubble.style.alignSelf = 'flex-end';
+            bubble.style.borderTopRightRadius = '0';
+        }
+
+        chatBody.appendChild(bubble);
         chatBody.scrollTop = chatBody.scrollHeight;
-        
-        return p;
+
+        // Simulamos un tiempo de "pensar" antes de escribir
+        const thinkTime = msg.type === 'agent' ? 1500 : 500;
+
+        setTimeout(() => {
+            typeWriter(p, msg.text, () => {
+                // Al terminar de escribir, añadimos la hora
+                const time = document.createElement('span');
+                time.style.cssText = `font-size: 10px; opacity: 0.5; display: block; text-align: right; margin-top: 5px;`;
+                time.innerText = msg.time;
+                bubble.appendChild(time);
+                
+                chatStatus.innerText = 'En línea';
+                index++;
+                
+                // Esperamos un poco antes del siguiente mensaje
+                setTimeout(processNextMessage, 2000);
+            });
+        }, thinkTime);
     }
 
-    function typeMessage(pElement, text) {
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                pElement.innerHTML = text.substring(0, i + 1);
-                i++;
-                const randomSpeed = Math.random() * (70 - 30) + 30;
-                setTimeout(typeWriter, randomSpeed);
-            } else {
-                if (pElement.parentElement.classList.contains('agent')) {
-                    chatStatus.innerText = 'En línea';
-                }
-                setTimeout(nextMessage, 1500);
-            }
-        }
-        typeWriter();
-    }
-
-    function nextMessage() {
-        if (conversationIndex < conversation.length) {
-            const msg = conversation[conversationIndex];
-            const pElement = createMessageElement(msg);
-
-            if (msg.type === 'agent') {
-                chatStatus.innerText = 'escribiendo...';
-                setTimeout(() => typeMessage(pElement, msg.text), 2000); 
-            } else {
-                setTimeout(() => typeMessage(pElement, msg.text), 500);
-            }
-            
-            conversationIndex++;
-        }
-    }
-
-    setTimeout(nextMessage, 1500); 
+    if (conversation.length > 0) processNextMessage();
 });
 </script>
-<!-- ======================================= -->
-<!-- ==      FIN DEL SCRIPT DE ANIMACIÓN    == -->
-<!-- ======================================= -->
-
 {% endblock %}

@@ -20,8 +20,11 @@
             </a>
             <ul>
                 <li><a href="{{ url_for('catalogo_agentes') }}">Agentes de IA</a></li>
+                <!-- Esta es la nueva línea que debes añadir -->
+                <li><a href="{{ url_for('pagina_soluciones') }}">Soluciones</a></li>
+                
                 <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="{{ url_for('pagina_contacto') }}">Contacto</a></li>
             </ul>
             <a href="https://wa.me/573152405542" class="boton-contacto" target="_blank">Contactar Ventas</a>
         </nav>

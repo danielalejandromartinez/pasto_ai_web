@@ -1,13 +1,57 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}
-Nuestras Soluciones - PASTO.AI
-{% endblock %}
+{% block title %}Nuestra Tecnología - Pasto.AI{% endblock %}
 
 {% block content %}
-<div class="hero">
-    <h2>Nuestras Soluciones de Inteligencia Artificial</h2>
-    <p>Aquí detallamos cómo transformamos negocios con nuestras tecnologías de vanguardia.</p>
-    <!-- Próximamente: Más información sobre Data Analytics, Automatización y Agentes IA -->
-</div>
+<main style="padding-top: 120px; background: #000; color: #FFF;">
+    <!-- CABECERA DE SOLUCIONES -->
+    <section style="text-align: center; margin-bottom: 80px; padding: 0 20px;">
+        <h1 style="font-size: 50px; margin-bottom: 20px; background: linear-gradient(to right, #FFF, #00BFFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Tecnología de Vanguardia para Negocios Reales
+        </h1>
+        <p style="font-size: 20px; color: #888; max-width: 800px; margin: 0 auto;">
+            Combinamos los 3 pilares de la revolución digital para que su empresa nunca vuelva a ser la misma.
+        </p>
+    </section>
+
+    <!-- LOS 3 PILARES -->
+    <section style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; padding: 0 20px 100px;">
+        
+        <!-- PODER 1: EL CEREBRO -->
+        <div style="background: rgba(255,255,255,0.03); padding: 40px; border-radius: 30px; border: 1px solid #222; text-align: center; transition: transform 0.3s;">
+            <div style="font-size: 50px; margin-bottom: 20px;">🧠</div>
+            <h3 style="color: #00BFFF; font-size: 24px; margin-bottom: 15px;">Cerebro de IA (OpenAI)</h3>
+            <p style="color: #AAA; line-height: 1.6;">
+                Utilizamos los modelos de lenguaje más avanzados del mundo para que su agente no solo responda, sino que **entienda** el contexto y la intención de cada cliente.
+            </p>
+        </div>
+
+        <!-- PODER 2: LA CONEXIÓN -->
+        <div style="background: rgba(255,255,255,0.03); padding: 40px; border-radius: 30px; border: 1px solid #222; text-align: center; transition: transform 0.3s;">
+            <div style="font-size: 50px; margin-bottom: 20px;">📲</div>
+            <h3 style="color: #00BFFF; font-size: 24px; margin-bottom: 15px;">Omnicanalidad WhatsApp</h3>
+            <p style="color: #AAA; line-height: 1.6;">
+                Nos integramos directamente con WhatsApp. Sus clientes no tienen que bajar ninguna App; simplemente le escriben al chat que ya usan todos los días.
+            </p>
+        </div>
+
+        <!-- PODER 3: LOS DATOS -->
+        <div style="background: rgba(255,255,255,0.03); padding: 40px; border-radius: 30px; border: 1px solid #222; text-align: center; transition: transform 0.3s;">
+            <div style="font-size: 50px; margin-bottom: 20px;">📊</div>
+            <h3 style="color: #00BFFF; font-size: 24px; margin-bottom: 15px;">Inteligencia de Datos</h3>
+            <p style="color: #AAA; line-height: 1.6;">
+                Cada palabra que entra al chat se convierte en data. Le entregamos un tablero de control para que vea ventas, tendencias y clientes nuevos en tiempo real.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- LLAMADO A LA ACCIÓN FINAL -->
+    <section style="text-align: center; background: #050505; padding: 100px 20px; border-top: 1px solid #111;">
+        <h2 style="font-size: 36px; margin-bottom: 30px;">¿Listo para darle estos poderes a su empresa?</h2>
+        <a href="{{ url_for('catalogo_agentes') }}" class="boton-principal" style="padding: 20px 60px; font-size: 18px; border-radius: 50px; text-decoration: none;">
+            Ver Catálogo de Agentes
+        </a>
+    </section>
+</main>
 {% endblock %}

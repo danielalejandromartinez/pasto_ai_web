@@ -34,7 +34,7 @@ mail = Mail(app)
 # --- 3. CONEXIÓN CON LAS APIs ---
 
 # CEREBRO (OpenAI) - Usamos la llave que ya configuraste
-client = OpenAI(api_key=os.getenv('CLAVE_API_DE_OPENAI'))
+client = OpenAI(api_key=os.getenv('CLAVE_API_DE_OPENAI') or "llave_de_juguete")
 
 # BOCA Y OÍDOS (Evolution API) - Estos los configuraremos en el siguiente paso
 EVOLUTION_URL = os.getenv('EVOLUTION_URL') 
@@ -46,28 +46,58 @@ NOMBRE_INSTANCIA = "Daniela"
 # ===================================================
 agentes_db = {
     'asistente-post-operatorio': {
-        'nombre': "Asistente de Cuidado Post-Operatorio",
+        'nombre': "Asistente Médico Post-Op",
+        'industria': "Salud",
         'icono': "🩺",
-        'descripcion_corta': "Automatiza el seguimiento y resuelve las dudas de tus pacientes 24/7.",
-        'descripcion_larga': "Este Agente de IA se entrena con tus protocolos y guías de cuidado para responder de forma precisa y segura a las preguntas más frecuentes de tus pacientes después de una cirugía, liberando a tu equipo y mejorando la adherencia al tratamiento.",
-        'nicho': "Médicos Especialistas y Cirujanos",
-        'status': "Disponible"
+        'descripcion_larga': "Este Agente de IA se entrena con tus protocolos para cuidar a tus pacientes después de una cirugía, resolviendo dudas y agendando controles automáticamente.",
+        'metrica': "-30% Inasistencias",
+        'status': "Disponible",
+        'wa_mensaje': "Hola Daniela, me interesa el sistema de Salud para mi clínica.",
+        'stats': {'ventas': '124 citas', 'clientes': '45 pac.', 'ahorro': '12h/sem'},
+        'conversacion': [
+            {'type': 'patient', 'text': 'Hola Dr., disculpe la hora. Me duele la zona de la cirugía y no sé si deba tomarme la pastilla roja o la blanca ahora.', 'time': '11:15 p. m.'},
+            {'type': 'agent', 'text': '¡Hola! Entiendo su preocupación. Soy el Asistente Virtual del Dr. Ramos. Para darle la instrucción exacta, ¿podría confirmarme su nombre completo?', 'time': '11:15 p. m.'},
+            {'type': 'patient', 'text': 'Soy Carlos Pérez.', 'time': '11:16 p. m.'},
+            {'type': 'agent', 'text': 'Gracias, Carlos. Según su historial de hoy, la pastilla blanca es el analgésico y debe tomarla ahora con comida. La roja es el antibiótico de la mañana. ¿Desea que le agende una llamada de control mañana a las 10:00 am?', 'time': '11:16 p. m.'},
+            {'type': 'patient', 'text': '¡Ah, perfecto! Sí, por favor, a las 10:00 am está bien. Muchas gracias.', 'time': '11:17 p. m.'},
+            {'type': 'agent', 'text': 'Listo, Carlos. Cita de control agendada para las 10:00 am. Siga descansando. 🌙', 'time': '11:17 p. m.'}
+        ]
     },
-    'agente-calificador-de-candidatos': {
-        'nombre': "Agente Calificador de Candidatos",
-        'icono': "🎯",
-        'descripcion_corta': "Filtra automáticamente a los prospectos y agenda solo a los calificados.",
-        'descripcion_larga': "Implementa este agente en tu sitio web para interactuar con los visitantes, responder preguntas básicas, pre-calificar candidatos según tus criterios y agendar consultas únicamente con los prospectos de mayor valor.",
-        'nicho': "Clínicas, Inmobiliarias, Consultores",
-        'status': "Próximamente"
+    'ventas-gastronomia': {
+        'nombre': "Agente de Ventas Gourmet",
+        'industria': "Gastronomía",
+        'icono': "🍰",
+        'descripcion_larga': "Atiende pedidos, resuelve dudas sobre el menú y gestiona pagos automáticamente, enviando toda la data a tu panel de control.",
+        'metrica': "+40% Conversión",
+        'status': "Disponible",
+        'wa_mensaje': "Hola Daniela, quiero el Agente de Ventas para mi Pastelería.",
+        'stats': {'ventas': '$4.2M COP', 'clientes': '182 ped.', 'ahorro': '20h/sem'},
+        'conversacion': [
+            {'type': 'patient', 'text': 'Buenas tardes, ¿tienen disponibilidad de tortas de chocolate para hoy mismo? Es para un regalo.', 'time': '3:00 p. m.'},
+            {'type': 'agent', 'text': '¡Hola! 👋 Qué buen detalle. Soy el Asistente de Pastelería Gourmet. Sí, tenemos nuestra "Selva Negra Premium" lista para salir. ¿Para cuántas personas la necesitas?', 'time': '3:00 p. m.'},
+            {'type': 'patient', 'text': 'Para 15 personas. ¿Cuánto cuesta con envío al norte?', 'time': '3:01 p. m.'},
+            {'type': 'agent', 'text': 'Esa tiene un valor de $45 USD y el envío al norte es de $5 USD. Incluye tarjeta de regalo personalizada. ¿Te gustaría proceder con el pago por aquí para asegurar tu reserva?', 'time': '3:01 p. m.'},
+            {'type': 'patient', 'text': 'Sí, envíame los datos de pago por favor.', 'time': '3:02 p. m.'},
+            {'type': 'agent', 'text': '¡Excelente! Aquí tienes el link de pago seguro. Una vez realizado, registraré tu pedido en cocina automáticamente. 👩‍🍳', 'time': '3:02 p. m.'}
+        ]
     },
-    'agente-de-agendamiento-inteligente': {
-        'nombre': "Agente de Agendamiento Inteligente",
-        'icono': "🗓️",
-        'descripcion_corta': "Coordina citas y envía recordatorios para eliminar los 'no-shows'.",
-        'descripcion_larga': "Sincronizado con tu calendario, este agente gestiona el agendamiento de citas 24/7 a través de WhatsApp, encuentra huecos, confirma, reagenda y envía recordatorios automáticos para reducir la tasa de inasistencia.",
-        'nicho': "Cualquier negocio basado en citas",
-        'status': "Próximamente"
+    'eventos-sociales': {
+        'nombre': "Planner Intelligence",
+        'industria': "Eventos",
+        'icono': "🥂",
+        'descripcion_larga': "Gestiona cotizaciones de eventos, califica prospectos y agenda visitas al salón 24/7 sin intervención humana.",
+        'metrica': "Respuesta 24/7",
+        'status': "Disponible",
+        'wa_mensaje': "Hola Daniela, vi el Agente de Eventos y quiero implementarlo en mi salón.",
+        'stats': {'ventas': '8 eventos', 'clientes': '240 cot.', 'ahorro': '35h/sem'},
+        'conversacion': [
+            {'type': 'patient', 'text': 'Hola, me gustaría información para celebrar una boda el próximo año.', 'time': '10:00 a. m.'},
+            {'type': 'agent', 'text': '¡Felicidades por su compromiso! 💍 Soy el Planner Inteligente del Salón. Para enviarle una propuesta exacta, ¿tienen ya una fecha y cuántos invitados?', 'time': '10:00 a. m.'},
+            {'type': 'patient', 'text': 'Sería para Agosto y unos 120 invitados.', 'time': '10:01 a. m.'},
+            {'type': 'agent', 'text': 'Perfecto. Para 120 invitados en Agosto, el "Paquete Platinum" es el ideal. ¿Les gustaría agendar una visita guiada al salón este sábado a las 4:00 pm para verlo en vivo?', 'time': '10:01 a. m.'},
+            {'type': 'patient', 'text': 'Sí, me parece muy bien a las 4:00 pm.', 'time': '10:02 a. m.'},
+            {'type': 'agent', 'text': 'Cita agendada para el sábado a las 4:00 pm. Les acabo de enviar la ubicación exacta. ¡Nos vemos pronto! ✨', 'time': '10:02 a. m.'}
+        ]
     }
 }
 
@@ -98,9 +128,9 @@ def detalle_agente(slug):
         abort(404)
     return render_template('detalle_agente.html', agente=agente, slug=slug)
 
-@app.route('/formularios-digitales')
-def pagina_formularios_digitales():
-    return render_template('formularios_digitales.html')
+@app.route('/soluciones')
+def pagina_soluciones():
+    return render_template('soluciones.html')
 
 @app.route('/formularios/<form_id>', methods=['GET', 'POST'])
 def mostrar_formulario(form_id):
@@ -112,6 +142,10 @@ def mostrar_formulario(form_id):
 @app.route('/gracias')
 def pagina_de_gracias():
     return render_template('gracias.html')
+
+@app.route('/contacto')
+def pagina_contacto():
+    return render_template('contacto.html')
 
 
 # ===================================================
