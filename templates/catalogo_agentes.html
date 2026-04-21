@@ -3,36 +3,90 @@
 {% block title %}Catálogo de Agentes de IA - Pasto.AI{% endblock %}
 
 {% block content %}
-<main>
-    <section class="sales-hero">
+<main style="padding-top: 120px;">
+    <!-- CABECERA -->
+    <section class="sales-hero" style="text-align: center; padding: 40px 20px;">
         <div class="sales-content">
-            <h1>Conozca a Nuestros Agentes de IA</h1>
-            <p class="sales-subtitle">Soluciones especializadas, listas para trabajar para usted 24/7.</p>
+            <h1 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 10px;">Conozca a Nuestros Agentes de IA</h1>
+            <p style="color: #888; font-size: 18px; max-width: 700px; margin: 0 auto;">
+                Tecnología de vanguardia con energía propia para su negocio.
+            </p>
         </div>
     </section>
 
-    <section class="benefits-section">
+    <!-- GRID DE TARJETAS ANIMADAS -->
+    <section style="padding: 0 20px 80px;">
         <div class="agent-grid">
+            
             {% for slug, agent in agentes.items() %}
-            <a href="{{ url_for('detalle_agente', slug=slug) }}" class="agent-card {% if agent.status == 'Próximamente' %}disabled{% endif %}">
-                <!-- Nueva etiqueta de industria -->
-                <div class="industry-tag" style="color: #00BFFF; font-size: 12px; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-                    {{ agent.industria }}
+            <!-- CAPA EXTERIOR: Tiene la clase de color según la industria -->
+            <a href="{{ url_for('detalle_agente', slug=slug) }}" 
+               class="agent-card 
+               {% if agent.industria == 'Salud' %}border-salud
+               {% elif agent.industria == 'Gastronomía' %}border-gastronomia
+               {% else %}border-eventos{% endif %}">
+                
+                <!-- CAPA INTERIOR: Tapa el centro del rayo de luz -->
+                <div class="card-inner">
+                    <div class="industry-tag" style="color: #00BFFF; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">
+                        {{ agent.industria }}
+                    </div>
+                    
+                    <div class="agent-icon">{{ agent.icono }}</div>
+                    
+                    <h3 style="font-size: 22px; margin: 10px 0;">{{ agent.nombre }}</h3>
+                    
+                    <p style="color: #AAA; font-size: 14px; line-height: 1.6; flex-grow: 1;">
+                        {{ agent.descripcion_corta }}
+                    </p>
+                    
+                    <div style="background: rgba(0, 191, 255, 0.1); color: #00BFFF; padding: 8px 15px; border-radius: 8px; font-weight: bold; font-size: 14px; margin-bottom: 20px;">
+                        {{ agent.metrica }}
+                    </div>
+                    
+                    <span class="agent-status" style="background: #007BFF; color: #FFF; padding: 10px 25px; border-radius: 50px; font-weight: bold; font-size: 13px;">
+                        Ver Detalles
+                    </span>
                 </div>
-                
-                <div class="agent-icon">{{ agent.icono }}</div>
-                <h3>{{ agent.nombre }}</h3>
-                <p>{{ agent.descripcion_corta }}</p>
-                
-                <!-- Nuevo número mágico (Premio) -->
-                <div class="agent-metric" style="background: rgba(0, 191, 255, 0.1); color: #00BFFF; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin: 15px 0;">
-                    {{ agent.metrica }}
-                </div>
-                
-                <span class="agent-status">{{ agent.status }}</span>
             </a>
             {% endfor %}
+
+            <!-- TARJETA DORADA ESPECIAL -->
+            <a href="https://wa.me/573152405542?text=Hola%20Daniela,%20quiero%20un%20agente%20personalizado." 
+               target="_blank" 
+               class="agent-card border-especial">
+                
+                <div class="card-inner">
+                    <div style="color: #FFD700; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">
+                        Proyecto Especial
+                    </div>
+                    
+                    <div class="agent-icon" style="filter: drop-shadow(0 0 10px #FFD700);">🧩</div>
+                    
+                    <h3 style="font-size: 22px; margin: 10px 0; color: #FFD700;">¿Tu industria es única?</h3>
+                    
+                    <p style="color: #AAA; font-size: 14px; line-height: 1.6; flex-grow: 1;">
+                        Diseñamos y entrenamos un cerebro de IA específico para sus necesidades.
+                    </p>
+                    
+                    <div style="background: rgba(255, 215, 0, 0.2); color: #FFD700; padding: 8px 15px; border-radius: 8px; font-weight: bold; font-size: 14px; margin-bottom: 20px;">
+                        Desarrollo a Medida
+                    </div>
+                    
+                    <span style="background: #FFD700; color: #000; padding: 10px 25px; border-radius: 50px; font-weight: bold; font-size: 13px;">
+                        Consultar Ahora
+                    </span>
+                </div>
+            </a>
+
         </div>
     </section>
 </main>
+
+<!-- PEQUEÑO AJUSTE EXTRA DE CSS PARA EL TEXTO -->
+<style>
+    .card-inner p {
+        flex-grow: 1; /* Esto mantiene los botones alineados abajo */
+    }
+</style>
 {% endblock %}

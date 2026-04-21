@@ -2,9 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- 1. LA ETIQUETA DE VISIÓN (Clave para que se vea bien en celulares) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Pasto.AI{% endblock %}</title>
+    
+    <title>{% block title %}Pasto.AI - Inteligencia Artificial{% endblock %}</title>
+    
+    <!-- 2. EL VÍNCULO MAESTRO AL CSS (El cable que conecta con el diseño) -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- FUENTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -12,46 +18,40 @@
 <body>
     <header>
         <nav>
+            <!-- LOGO CON VIDEO -->
             <a href="{{ url_for('hola_mundo') }}" class="logo">
-                <video autoplay loop muted playsinline width="90" height="90">
+                <video autoplay loop muted playsinline width="80" height="80">
                     <source src="{{ url_for('static', filename='videos/logo_video.mp4') }}" type="video/mp4">
-                    Tu navegador no soporta videos HTML5.
+                    Tu navegador no soporta videos.
                 </video>
             </a>
+
+            <!-- MENÚ DE NAVEGACIÓN -->
             <ul>
                 <li><a href="{{ url_for('catalogo_agentes') }}">Agentes de IA</a></li>
-                <!-- Esta es la nueva línea que debes añadir -->
                 <li><a href="{{ url_for('pagina_soluciones') }}">Soluciones</a></li>
-                
                 <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
                 <li><a href="{{ url_for('pagina_contacto') }}">Contacto</a></li>
             </ul>
+
+            <!-- BOTÓN DE ACCIÓN -->
             <a href="https://wa.me/573152405542" class="boton-contacto" target="_blank">Contactar Ventas</a>
         </nav>
     </header>
 
+    <!-- AQUÍ SE INYECTA EL CONTENIDO DE CADA PÁGINA -->
     {% block content %}{% endblock %}
 
-    <footer>
+    <!-- PIE DE PÁGINA (FOOTER) -->
+    <footer style="background: #0a0a0a; padding: 40px 20px; text-align: center; border-top: 1px solid #222; margin-top: 50px;">
         <div class="footer-content">
-            <div class="footer-info">
-                <p>&copy; 2025 PASTO.AI | Todos los derechos reservados.</p>
-            </div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="{{ url_for('hola_mundo') }}">Inicio</a></li>
-                    <li><a href="{{ url_for('catalogo_agentes') }}">Soluciones</a></li>
-                    <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
-                </ul>
-            </div>
+            <p style="color: #666; margin-bottom: 15px;">&copy; 2025 PASTO.AI | Todos los derechos reservados.</p>
             <div class="footer-social">
-                <a href="#" target="_blank">Facebook</a>
-                <a href="#" target="_blank">Instagram</a>
-                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" style="color: #FFF; margin: 0 10px; text-decoration: none; opacity: 0.7;">LinkedIn</a>
+                <a href="#" style="color: #FFF; margin: 0 10px; text-decoration: none; opacity: 0.7;">Instagram</a>
             </div>
         </div>
     </footer>
     
-    <!-- No hay scripts aquí. Cada página manejará los suyos. -->
 </body>
 </html>
